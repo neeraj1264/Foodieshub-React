@@ -1,0 +1,36 @@
+a{
+    text-decoration: none !important;
+}
+/* styles.css */
+.product-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+  }
+  
+  .product-details {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .add-to-cart {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .add-to-cart img {
+    max-width: 100%;
+    height: auto;
+  }
+  .add-btn{
+    margin-left: 2rem;
+  }
+  .add-btn button{
+    padding: 0.2rem 2.3rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+    color: grey;
+  }
