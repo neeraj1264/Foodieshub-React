@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import './Header.css';
 import { Link, NavLink } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Badge from 'react-bootstrap/Badge';
 
 function Header() {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -24,17 +22,6 @@ function Header() {
           <Link to="/" className="navbar-brand text-white">
             Foodies Hub
           </Link>
-
-          <NavLink
-                  to="/cart"
-                  className="nav-link text-white"
-                  onClick={handleLinkClick}
-                >
-                  <FaShoppingCart />
-                  {cartItemsCount > 0 && (
-                    <Badge bg="danger">{cartItemsCount}</Badge>
-                  )}
-                </NavLink>
           <button
             className={`navbar-toggler ${navbarOpen ? 'collapsed' : ''} `}
             type="button"

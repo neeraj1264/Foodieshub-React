@@ -24,13 +24,16 @@ a{
     height: auto;
   }
   .add-btn{
-    margin-left: 2rem;
-  }
-  .add-btn button{
-    padding: 0.2rem 2.3rem;
-    font-weight: 500;
-    font-size: 1.5rem;
-    border: 1px solid grey;
-    border-radius: 0.5rem;
-    color: grey;
-  }
+    border: 1px solid red;
+    background: whitesmoke;
+    width: fit-content;
+    align-items: center;
+    margin: auto;
+    padding: 0rem 1rem;
+    border-radius: .5rem;
+   }
+   .add-btn button{
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 800;
+    }

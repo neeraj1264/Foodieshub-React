@@ -1,5 +1,5 @@
 import React from 'react';
-import Cards from '../Cards';
+import Cards from '../Un-CustomizeCard/cards';
 
 const PizzaData = [
   { id: 1, name: 'Veg Burger', image: '/img/burger.png', description: 'Classic Pizza with meat sauce.', price: 50, mrp: '70' },
