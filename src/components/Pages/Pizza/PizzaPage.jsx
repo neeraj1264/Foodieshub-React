@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Button, Modal, Table } from 'react-bootstrap';
+import { useCart } from "../../../ContextApi";
 
 const PizzaPage = ({ name, description, price, image, mrp }) => {
   const { priceR, priceM, priceL } = price;
+
+  const { addToCart } = useCart();
 
   const [show, setShow] = useState(false);
   const [selectedSize, setSelectedSize] = useState('');
@@ -100,7 +103,7 @@ const PizzaPage = ({ name, description, price, image, mrp }) => {
                 <Button variant="secondary" onClick={handleClose}>
                   Cancel
                 </Button>
-                <Button variant="primary" onClick={handleAddToCart}>
+                <Button variant="primary" onClick={addToCart}>
                   Add to Cart
                 </Button>
               </Modal.Footer>

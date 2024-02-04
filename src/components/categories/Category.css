@@ -3,7 +3,7 @@
     text-align: center;
     font-weight: 800;
     padding: .5rem;
-    font-size: 1rem;
+    font-size: .7rem;
   }
   
   .card {
@@ -23,9 +23,11 @@
  }
   
   .outer-card {
-    display: flex; /* Removed quotes around flex */
+    display: flex; 
     flex-direction: row;
-    flex-wrap: nowrap; /* Removed quotes around nowrap */
-    overflow-x: auto; /* Removed quotes around auto */
+    flex-wrap: nowrap;
+    overflow-x: auto; 
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;  
   }
   

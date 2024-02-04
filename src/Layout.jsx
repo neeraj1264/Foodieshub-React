@@ -1,17 +1,20 @@
 import Header from './components/header/Header';
 import { Outlet } from 'react-router';
 import Footer from './components/footer/Footer';
+import { CartProvider } from './ContextApi';
 function Layout() {
 
     return (
      <>
-         <div className="app-container">
-     <Header/>
-     <div className='main-content'>
-     <Outlet/>
-     </div>
-     <Footer/>
-     </div>
+         <CartProvider>
+      <div className="app-container">
+        <Header />
+        <div className="main-content">
+          <Outlet />
+        </div>
+        <Footer />
+      </div>
+    </CartProvider>
      </>
     )
   }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-const PastaPage = ({ name, description, price, image, mrp }) => {
+import { useCart } from "../../../ContextApi";
 
-  const handleAddToCart = () => {
-    handleClose();
-  };
+const PastaPage = ({ name, description, price, image, mrp }) => {
+  const { addToCart } = useCart();
+
 
   return (
     <>
@@ -21,7 +21,7 @@ const PastaPage = ({ name, description, price, image, mrp }) => {
             <img src={image} alt="Product" />
           </div>
           <div className="add-btn">
-            <button variant="contained" className="btn">
+          <button variant="contained" className="btn" onClick={addToCart}>
               ADD
             </button>
           </div>

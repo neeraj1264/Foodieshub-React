@@ -1,11 +1,15 @@
+// Header.jsx
 import React, { useState } from 'react';
 import './Header.css';
 import { Link, NavLink } from 'react-router-dom';
+import { FaShoppingBasket } from 'react-icons/fa';
+import Badge from 'react-bootstrap/Badge';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useCart } from '../../ContextApi';
 
 function Header() {
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const [cartItemsCount, setCartItemsCount] = useState(2);
+  const { cartItemsCount, addToCart } = useCart();
 
   const handleNavbarToggle = () => {
     setNavbarOpen(!navbarOpen);
@@ -15,6 +19,9 @@ function Header() {
     setNavbarOpen(false);
   };
 
+  const handleAddToCart = () => {
+    setCartItemsCount(cartItemsCount + 1);
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg fixed-top text-light">
@@ -22,6 +29,14 @@ function Header() {
           <Link to="/" className="navbar-brand text-white">
             Foodies Hub
           </Link>
+          <NavLink to="/cart" className="nav-link text-white" >
+            <FaShoppingBasket />
+            {cartItemsCount > 0 && (
+              <Badge bg="danger" className="ms-1">
+                {cartItemsCount}
+              </Badge>
+            )}
+          </NavLink>
           <button
             className={`navbar-toggler ${navbarOpen ? 'collapsed' : ''} `}
             type="button"

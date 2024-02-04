@@ -3,14 +3,18 @@ import './Category.css';
 import { Link } from 'react-router-dom';
 
 const categories = [
-  { id: 1, name: 'Pizza', image: '/img/pizza.png', path: '/g-1.jpg' },
-  { id: 2, name: 'Burger', image: '/img/burger.png', path: '/s-img-2.jpg' },
-  { id: 3, name: 'Pizza', image: '/img/pizza.png', path: '/g-1.jpg' },
-  { id: 4, name: 'Pasta', image: '/img/pasta.png', path: '/g-1.jpg' },
-  { id: 5, name: 'Pizza', image: '/img/pizza.png', path: '/g-1.jpg' },
-  { id: 6, name: 'Burger', image: '/img/burger.png', path: '/s-img-2.jpg' },
-  { id: 7, name: 'Pizza', image: '/img/pizza.png', path: '/g-1.jpg' },
-  { id: 8, name: 'Pasta', image: '/img/pasta.png', path: '/g-1.jpg' },
+  { id: 1, name: 'Pizza', image: '/img/pizza.png' },
+  { id: 2, name: 'Burger', image: '/img/burger.png'},
+  { id: 3, name: 'Sandwich', image: '/img/sandwich.png'},
+  { id: 4, name: 'Pasta', image: '/img/pasta.png'},
+  { id: 5, name: 'Shake', image: '/img/shake.png'},
+  { id: 6, name: 'G-B', image: '/img/gb.png' },
+  { id: 7, name: 'Chinese', image: '/img/chinese.png'},
+  { id: 8, name: 'Wrap', image: '/img/wrap.png'},
+  { id: 9, name: 'Snacks', image: '/img/snacks.png'},
+  { id: 10, name: 'Momos', image: '/img/momos.png'},
+  { id: 11, name: 'Chaap', image: '/img/chaap.png'},
+  { id: 12, name: 'Dinner', image: '/img/dinner.png'},
 ];
 
 function Category() {

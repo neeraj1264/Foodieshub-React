@@ -1,8 +1,14 @@
 import React from 'react'
-
+import './Footer.css'
 function Footer() {
   return (
-    <div>Footer</div>
+    <>
+     <footer>
+            <div className="footer-content ">
+                <p> <span>Copyright </span>&copy; 2024 || Foodies Hub</p>
+            </div>
+        </footer>
+    </>
   )
 }
 
