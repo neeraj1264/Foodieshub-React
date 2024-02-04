@@ -63,7 +63,7 @@ const PizzaPage = ({ name, description, price, image, mrp }) => {
                       <td>
                         <input
                           type="radio"
-                          value="small"
+                          value="Regular"
                           checked={selectedSize === 'Regular'}
                           onChange={handleSizeChange}
                         />
