@@ -2,8 +2,29 @@ import React, { useState } from "react";
 import { useCart } from "../../../ContextApi";
 
 const PastaPage = ({ name, description, price, image, mrp }) => {
-  const { addToCart } = useCart();
+  const { decrementCart , addToCart } = useCart();
 
+  const [showButtons, setShowButtons] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    } else {
+      // If quantity is 1, block add button and hide increment/decrement buttons
+      setShowButtons(false);
+      decrementCart();
+    }
+  };
+
+  const handleAddToCart = () => {
+    setShowButtons(true);
+    addToCart(quantity);
+  };
 
   return (
     <>
@@ -21,9 +42,22 @@ const PastaPage = ({ name, description, price, image, mrp }) => {
             <img src={image} alt="Product" />
           </div>
           <div className="add-btn">
-          <button variant="contained" className="btn" onClick={addToCart}>
-              ADD
-            </button>
+            {showButtons && (
+              <>
+                <button variant="contained" className="btn" onClick={handleDecrement}>
+                  -
+                </button>
+                <span style={{ margin: '0 0.5rem' }}>{quantity}</span>
+                <button variant="contained" className="btn" onClick={handleIncrement}>
+                  +
+                </button>
+              </>
+            )}
+            {!showButtons && (
+              <button variant="contained" className="btn" onClick={handleAddToCart}>
+                ADD
+              </button>
+            )}
           </div>
         </div>
       </div>

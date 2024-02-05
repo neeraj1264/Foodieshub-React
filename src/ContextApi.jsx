@@ -10,12 +10,21 @@ export function CartProvider({ children }) {
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
   const addToCart = () => {
-    setCartItemsCount((prevCount) => prevCount + 1);
+    if (cartItemsCount >= 0) {
+      setCartItemsCount((prevCount) => prevCount + 1);
+    }
+  };
+
+  const decrementCart = () => {
+    if (cartItemsCount > 0) {
+      setCartItemsCount((prevCount) => prevCount - 1);
+    }
   };
 
   const value = {
     cartItemsCount,
     addToCart,
+    decrementCart,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

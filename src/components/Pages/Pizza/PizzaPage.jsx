@@ -5,9 +5,11 @@ import { useCart } from "../../../ContextApi";
 const PizzaPage = ({ name, description, price, image, mrp }) => {
   const { priceR, priceM, priceL } = price;
 
-  const { addToCart } = useCart();
+  const { decrementCart , addToCart } = useCart();
 
   const [show, setShow] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
+  const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('');
 
   const handleShow = () => setShow(true);
@@ -20,11 +22,30 @@ const PizzaPage = ({ name, description, price, image, mrp }) => {
     setSelectedSize(event.target.value);
   };
 
-  const handleAddToCart = () => {
-    // Implement your logic to add the item to the cart with the selected size
-    handleClose();
+  // const handleAddToCart = () => {
+  //   // Implement your logic to add the item to the cart with the selected size
+  //   handleClose();
+  // };
+
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    } else {
+      setShowButtons(false);
+      decrementCart();
+    }
+  };
+
+  const handleAddToCart = () => {
+    setShowButtons(true);
+    addToCart(quantity);
+    setSelectedSize('');
+    setShow(false);
+  };
   return (
     <>
       <hr />
@@ -41,9 +62,22 @@ const PizzaPage = ({ name, description, price, image, mrp }) => {
             <img src={image} alt="Product" />
           </div>
           <div className="add-btn">
-            <button variant="contained" className="btn" onClick={handleShow}>
-              ADD
-            </button>
+          {showButtons && (
+              <>
+                <button variant="contained" className="btn" onClick={handleDecrement}>
+                  -
+                </button>
+                <span style={{ margin: '0 0.5rem' }}>{quantity}</span>
+                <button variant="contained" className="btn" onClick={handleIncrement}>
+                  +
+                </button>
+              </>
+            )}
+            {!showButtons && (
+              <button variant="contained" className="btn" onClick={handleShow}>
+                ADD
+              </button>
+            )}
             <Modal show={show} onHide={handleClose} style={{ position: 'absolute', bottom: '2px' }}>
               <Modal.Header closeButton>
                 <Modal.Title>Select Size</Modal.Title>
@@ -100,10 +134,14 @@ const PizzaPage = ({ name, description, price, image, mrp }) => {
                 </Table>
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Cancel
+              <Button variant="contained" className="btn" onClick={handleDecrement}>
+                  -
                 </Button>
-                <Button variant="primary" onClick={addToCart}>
+                <span style={{ margin: '0 0.5rem' }}>{quantity}</span>
+                <Button variant="contained" className="btn" onClick={handleIncrement}>
+                  +
+                </Button>
+                <Button variant="primary" onClick={handleAddToCart}>
                   Add to Cart
                 </Button>
               </Modal.Footer>
