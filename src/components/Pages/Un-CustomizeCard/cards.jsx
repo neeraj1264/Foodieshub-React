@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useCart } from "../../../ContextApi";
 
 const PastaPage = ({ name, description, price, image, mrp }) => {
-  const { decrementCart , addToCart } = useCart();
+  const { decrementCart , addToCart ,   AddToCart} = useCart();
 
   const [showButtons, setShowButtons] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -22,6 +22,14 @@ const PastaPage = ({ name, description, price, image, mrp }) => {
   };
 
   const handleAddToCart = () => {
+    const product = {
+      name,
+      price,
+      quantity,
+      image,
+      // Add other properties you want to store in the cart
+    };
+    AddToCart(product);
     setShowButtons(true);
     addToCart(quantity);
   };

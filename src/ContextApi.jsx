@@ -7,12 +7,17 @@ export function useCart() {
 }
 
 export function CartProvider({ children }) {
+  const [cartItems, setCartItems] = useState([]);
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
   const addToCart = () => {
     if (cartItemsCount >= 0) {
       setCartItemsCount((prevCount) => prevCount + 1);
     }
+  };
+
+  const AddToCart = (product) => {
+    setCartItems((prevItems) => [...prevItems, product]);
   };
 
   const decrementCart = () => {
@@ -23,7 +28,9 @@ export function CartProvider({ children }) {
 
   const value = {
     cartItemsCount,
+    cartItems,
     addToCart,
+    AddToCart,
     decrementCart,
   };
 
