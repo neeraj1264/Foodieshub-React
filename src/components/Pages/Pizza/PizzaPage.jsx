@@ -5,7 +5,7 @@ import { useCart } from "../../../ContextApi";
 const PizzaPage = ({ name, description, price, image, mrp }) => {
   const { priceR, priceM, priceL } = price;
 
-  const { decrementCart , addToCart } = useCart();
+  const { decrementCart , CartIcon } = useCart();
 
   const [show, setShow] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
@@ -22,11 +22,6 @@ const PizzaPage = ({ name, description, price, image, mrp }) => {
     setSelectedSize(event.target.value);
   };
 
-  // const handleAddToCart = () => {
-  //   // Implement your logic to add the item to the cart with the selected size
-  //   handleClose();
-  // };
-
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };
@@ -42,7 +37,7 @@ const PizzaPage = ({ name, description, price, image, mrp }) => {
 
   const handleAddToCart = () => {
     setShowButtons(true);
-    addToCart(quantity);
+    CartIcon(quantity);
     setSelectedSize('');
     setShow(false);
   };

@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { useCart } from "../../../ContextApi";
+// Cards.js
 
-const PastaPage = ({ name, description, price, image, mrp }) => {
-  const { decrementCart , addToCart ,   AddToCart} = useCart();
+import React, { useState } from 'react';
+import { useCart } from '../../../ContextApi';
+import QuantityButton from '../../QuantityButton';
 
+const Cards = ({ name, description, price, image, mrp, productId }) => {
+  const { decrementCart, CartIcon, AddToCart, quantity, updateQuantity } = useCart();
   const [showButtons, setShowButtons] = useState(false);
-  const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    updateQuantity(productId, quantity + 1); // Pass productId to updateQuantity
   };
-
+  
   const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
+      updateQuantity(productId, quantity - 1); // Pass productId to updateQuantity
     } else {
-      // If quantity is 1, block add button and hide increment/decrement buttons
       setShowButtons(false);
       decrementCart();
     }
@@ -27,11 +27,11 @@ const PastaPage = ({ name, description, price, image, mrp }) => {
       price,
       quantity,
       image,
-      // Add other properties you want to store in the cart
+      productId,
     };
     AddToCart(product);
     setShowButtons(true);
-    addToCart(quantity);
+    CartIcon(quantity); // Pass quantity to CartIcon
   };
 
   return (
@@ -40,8 +40,11 @@ const PastaPage = ({ name, description, price, image, mrp }) => {
       <div className="product-card">
         <div className="product-details">
           <h3>{name}</h3>
-          <p style={{ fontWeight: '700' }}>₹{price}
-            <span style={{ textDecoration: 'line-through', marginLeft: '.5rem', color: 'grey' }}>{mrp}</span>
+          <p style={{ fontWeight: '700' }}>
+            ₹{price}
+            <span style={{ textDecoration: 'line-through', marginLeft: '.5rem', color: 'grey' }}>
+              {mrp}
+            </span>
           </p>
           <p>{description}</p>
         </div>
@@ -52,13 +55,12 @@ const PastaPage = ({ name, description, price, image, mrp }) => {
           <div className="add-btn">
             {showButtons && (
               <>
-                <button variant="contained" className="btn" onClick={handleDecrement}>
-                  -
-                </button>
-                <span style={{ margin: '0 0.5rem' }}>{quantity}</span>
-                <button variant="contained" className="btn" onClick={handleIncrement}>
-                  +
-                </button>
+                <QuantityButton
+                  handleDecrement={handleDecrement}
+                  quantity={quantity}
+                  handleIncrement={handleIncrement}
+                  productId={productId} // Pass productId to QuantityButton
+                />
               </>
             )}
             {!showButtons && (
@@ -73,4 +75,4 @@ const PastaPage = ({ name, description, price, image, mrp }) => {
   );
 };
 
-export default PastaPage;
+export default Cards;
